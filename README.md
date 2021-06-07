@@ -3,6 +3,9 @@ A news briefing cli tool. Get the latest news headlines from your terminal
 
 ![news_cli](https://drive.google.com/uc?export=view&id=1AVfB_CFYoDwV6FMKI-bv-9rdCVCi3xjQ)
 
+### Media Houses
+- Capital Radio (Kenya)
+- Aljazeera (International)
 ### Usage
 `go run .\main.go -media=cap`
 
