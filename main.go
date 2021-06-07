@@ -25,6 +25,7 @@ func main() {
 	fmt.Println(`
 		~~ Get the news briefing from the following broadcasters ~~
 		1. cap : Capital Radio (KE)
+		2. aj : Aljazeera (International) 
 		`)
 
 	var media string
@@ -35,6 +36,11 @@ func main() {
 
 	if media == "cap" {
 		newsLink = news.Capitalradio()
+	} else if media == "aj" {
+		newsLink = news.AljazeeraNews()
+	} else {
+		fmt.Println("No Media House Specified")
+		return
 	}
 
 	for {
