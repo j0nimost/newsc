@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	fmt.Println(`
+	fmt.Println("\u001b[32m", `
 		
   _        _______           _______         _______  _       _________
  ( (    /|(  ____ \|\     /|(  ____ \       (  ____ \( \      \__   __/
@@ -20,10 +20,10 @@ func main() {
  |/    )_)(_______/(_______)\_______)       (_______/(_______/\_______/
 																	   
  
-		`)
+		`, "\u001b[0m")
 
 	fmt.Println(`
-		~~ Get the news briefing from the following broadcasters ~~\n
+		~~ Get the news briefing from the following broadcasters ~~
 		1. cap : Capital Radio (KE)
 		`)
 
