@@ -11,8 +11,8 @@ import (
 // Aljazeera News Headlines
 func AljazeeraNews() map[int]string {
 	news := make(map[int]string)
-
-	res, err := http.Get("https://www.aljazeera.com/")
+	const aj string = "https://www.aljazeera.com"
+	res, err := http.Get(aj)
 
 	if err != nil {
 		log.Fatalf("Status Code Error: %d %s", res.StatusCode, res.Status)
@@ -27,7 +27,7 @@ func AljazeeraNews() map[int]string {
 	doc.Find(".container .fte-featured__content-wrapper__right .fte-featured__right-inner-articles-wrapper .fte-featured__article-content").Each(func(i int, s *goquery.Selection) {
 		title := s.Find("a").Text()
 		href := s.Find("a").AttrOr("href", "")
-		news[i] = href
+		news[i] = aj + href
 		fmt.Printf("Review %d: %s\n", i, title)
 	})
 
