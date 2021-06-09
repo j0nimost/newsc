@@ -26,18 +26,24 @@ func main() {
 		~~ Get the news briefing from the following broadcasters ~~
 		1. cap : Capital Radio (KE)
 		2. aj : Aljazeera (International) 
+		3. rt : RT (International)
 		`)
 
 	var media string
 	var newsLink map[int]string
 
-	flag.StringVar(&media, "media", "", "Pass a media name eg cap")
+	flag.StringVar(&media, "media", "", `Pass a media name eg
+												1. cap : Capital Radio (KE)
+												2. aj : Aljazeera (International) 
+												3. rt : RT (International)	`)
 	flag.Parse()
 
 	if media == "cap" {
 		newsLink = news.Capitalradio()
 	} else if media == "aj" {
 		newsLink = news.AljazeeraNews()
+	} else if media == "rt" {
+		newsLink = news.RtNews()
 	} else {
 		fmt.Println("No Media House Specified")
 		return
