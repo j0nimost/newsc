@@ -7,6 +7,7 @@ A news briefing cli tool. Get the latest news headlines from your terminal
 ### Media Houses
 - Capital Radio (Kenya)
 - Aljazeera (International)
+- RT (International)
 ### Usage
 `go run .\main.go -media=cap`
 
