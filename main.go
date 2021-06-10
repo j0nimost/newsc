@@ -27,15 +27,18 @@ func main() {
 		1. cap : Capital Radio (KE)
 		2. aj : Aljazeera (International) 
 		3. rt : RT (International)
+		4. ctv : Citizen Tv(KE)
 		`)
 
 	var media string
 	var newsLink map[int]string
 
-	flag.StringVar(&media, "media", "", `Pass a media name eg
-												1. cap : Capital Radio (KE)
-												2. aj : Aljazeera (International) 
-												3. rt : RT (International)	`)
+	flag.StringVar(&media, "media", "",
+		`Pass a media name eg
+			1. cap : Capital Radio (KE)
+			2. aj : Aljazeera (International) 
+			3. rt : RT (International)	
+			4. ctv : Citizen Tv(KE)`)
 	flag.Parse()
 
 	if media == "cap" {
@@ -44,6 +47,8 @@ func main() {
 		newsLink = news.AljazeeraNews()
 	} else if media == "rt" {
 		newsLink = news.RtNews()
+	} else if media == "ctv" {
+		newsLink = news.CitizenTv()
 	} else {
 		fmt.Println("No Media House Specified")
 		return

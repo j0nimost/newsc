@@ -1,5 +1,6 @@
 ## newsc
 ~~ Alias news-cli
+
 A news briefing cli tool. Get the latest news headlines from your terminal
 
 ![news_cli](https://drive.google.com/uc?export=view&id=1AVfB_CFYoDwV6FMKI-bv-9rdCVCi3xjQ)
@@ -8,8 +9,9 @@ A news briefing cli tool. Get the latest news headlines from your terminal
 - Capital Radio (Kenya)
 - Aljazeera (International)
 - RT (International)
+- Citizen Tv (Kenya)
 ### Usage
-`go run .\main.go -media=cap`
+Example: `go run .\main.go -media=cap` for help use: `go run .\main.go -h`
 
 ### Contributions
 Have Fun(Jibambe) and add your own media source
