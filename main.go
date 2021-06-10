@@ -33,11 +33,12 @@ func main() {
 	var media string
 	var newsLink map[int]string
 
-	flag.StringVar(&media, "media", "", `Pass a media name eg
-												1. cap : Capital Radio (KE)
-												2. aj : Aljazeera (International) 
-												3. rt : RT (International)	
-												4. ctv : Citizen Tv(KE)`)
+	flag.StringVar(&media, "media", "",
+		`Pass a media name eg
+			1. cap : Capital Radio (KE)
+			2. aj : Aljazeera (International) 
+			3. rt : RT (International)	
+			4. ctv : Citizen Tv(KE)`)
 	flag.Parse()
 
 	if media == "cap" {
