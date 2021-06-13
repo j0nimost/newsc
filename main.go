@@ -30,8 +30,11 @@ func main() {
 		4. ctv : Citizen Tv(KE)
 		`)
 
-	var media string
-	var newsLink map[int]string
+	var (
+		media string
+		newsLink map[int]string
+		n news.Newser
+	)
 
 	flag.StringVar(&media, "media", "",
 		`Pass a media name eg
@@ -42,13 +45,17 @@ func main() {
 	flag.Parse()
 
 	if media == "cap" {
-		newsLink = news.Capitalradio()
+		n = news.CapitalRadio{Url: "https://www.capitalfm.co.ke/news/", Query:".zox-feat-right-wrap .zox-side-list-wrap section"}
+		newsLink = n.GetNews()
 	} else if media == "aj" {
-		newsLink = news.AljazeeraNews()
+		n = news.Aljazeera{Url: "https://www.aljazeera.com", Query: ".container .fte-featured__content-wrapper__right .fte-featured__right-inner-articles-wrapper .fte-featured__article-content"}
+		newsLink = n.GetNews()
 	} else if media == "rt" {
-		newsLink = news.RtNews()
+		n = news.RTNews{Url: "https://www.rt.com", Query:".news-block .main-promobox ul li .main-promobox__wrapper"}
+		newsLink = n.GetNews()
 	} else if media == "ctv" {
-		newsLink = news.CitizenTv()
+		n = news.CitizenTv {Url: "https://citizentv.co.ke/", Query:".main-story .more-election-stories div"}
+		newsLink = n.GetNews()
 	} else {
 		fmt.Println("No Media House Specified")
 		return

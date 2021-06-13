@@ -8,11 +8,13 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-// Aljazeera News Headlines
-func AljazeeraNews() map[int]string {
+type Aljazeera struct {
+	Url, Query string
+}
+
+func (aj Aljazeera) GetNews() map[int] string {
 	news := make(map[int]string)
-	const aj string = "https://www.aljazeera.com"
-	res, err := http.Get(aj)
+	res, err := http.Get(aj.Url)
 
 	if err != nil {
 		log.Fatalf("Status Code Error: %d %s", res.StatusCode, res.Status)
@@ -23,11 +25,11 @@ func AljazeeraNews() map[int]string {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	doc.Find(".container .fte-featured__content-wrapper__right .fte-featured__right-inner-articles-wrapper .fte-featured__article-content").Each(func(i int, s *goquery.Selection) {
+	
+	doc.Find(aj.Query).Each(func(i int, s *goquery.Selection) {
 		title := s.Find("a").Text()
 		href := s.Find("a").AttrOr("href", "")
-		news[i] = aj + href
+		news[i] = aj.Url + href
 		fmt.Printf("Review %d: %s\n", i, title)
 	})
 

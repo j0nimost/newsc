@@ -9,10 +9,13 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-func RtNews() map[int]string {
+type RTNews struct {
+	Url, Query string
+}
+
+func (rt RTNews) GetNews() map[int] string {
 	newsLinks := make(map[int]string)
-	rt := "https://www.rt.com"
-	res, err := http.Get(rt)
+	res, err := http.Get(rt.Url)
 
 	if err != nil {
 		log.Fatalf("Status Code Error: %d %s", res.StatusCode, res.Status)
@@ -24,14 +27,15 @@ func RtNews() map[int]string {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	doc.Find(".news-block .main-promobox ul li .main-promobox__wrapper").Each(func(i int, s *goquery.Selection) {
+	
+	doc.Find(rt.Query).Each(func(i int, s *goquery.Selection) {
 		title := s.Find("a").Text()
 		href := s.Find("a").AttrOr("href", "")
-		newsLinks[i] = rt + href
+		newsLinks[i] = rt.Url + href
 		trim := strings.TrimSpace(title)
 		fmt.Printf("Review %d: %s\n", i, trim)
 	})
 
 	return newsLinks
 }
+

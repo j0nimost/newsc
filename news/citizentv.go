@@ -9,10 +9,13 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-func CitizenTv() map[int]string {
+type CitizenTv struct {
+	Url, Query string
+}
+
+func (ctv CitizenTv) GetNews() map[int] string {
 	newsLinks := make(map[int]string)
-	citizentv := "https://citizentv.co.ke/"
-	res, err := http.Get(citizentv)
+	res, err := http.Get(ctv.Url)
 
 	if err != nil {
 		log.Fatalf("Status Code Error: %d %s", res.StatusCode, res.Status)
@@ -25,7 +28,7 @@ func CitizenTv() map[int]string {
 		log.Fatal(err)
 	}
 
-	doc.Find(".main-story .more-election-stories div").Each(func(i int, s *goquery.Selection) {
+	doc.Find(ctv.Query).Each(func(i int, s *goquery.Selection) {
 		title := s.Find("a").Text()
 		href := s.Find("a").AttrOr("href", "")
 
