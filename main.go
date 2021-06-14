@@ -45,16 +45,16 @@ func main() {
 	flag.Parse()
 
 	if media == "cap" {
-		n = news.CapitalRadio{Url: "https://www.capitalfm.co.ke/news/", Query:".zox-feat-right-wrap .zox-side-list-wrap section"}
+		n = news.NewsLoader{Url: "https://www.capitalfm.co.ke/news/", Query:".zox-feat-right-wrap .zox-side-list-wrap section"}
 		newsLink = n.GetNews()
 	} else if media == "aj" {
-		n = news.Aljazeera{Url: "https://www.aljazeera.com", Query: ".container .fte-featured__content-wrapper__right .fte-featured__right-inner-articles-wrapper .fte-featured__article-content"}
+		n = news.NewsLoader{Url: "https://www.aljazeera.com", Query: ".container .fte-featured__content-wrapper__right .fte-featured__right-inner-articles-wrapper .fte-featured__article-content"}
 		newsLink = n.GetNews()
 	} else if media == "rt" {
-		n = news.RTNews{Url: "https://www.rt.com", Query:".news-block .main-promobox ul li .main-promobox__wrapper"}
+		n = news.NewsLoader{Url: "https://www.rt.com", Query:".news-block .main-promobox ul li .main-promobox__wrapper"}
 		newsLink = n.GetNews()
 	} else if media == "ctv" {
-		n = news.CitizenTv {Url: "https://citizentv.co.ke/", Query:".main-story .more-election-stories div"}
+		n = news.NewsLoader{Url: "https://citizentv.co.ke/", Query:".main-story .more-election-stories div"}
 		newsLink = n.GetNews()
 	} else {
 		fmt.Println("No Media House Specified")
