@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"newscli/news"
+	"time"
 )
 
 func main() {
@@ -31,10 +32,12 @@ func main() {
 		`)
 
 	var (
-		media string
+		media    string
 		newsLink map[int]string
-		n news.Newser
+		n        news.Newser
 	)
+
+	//c := make(chan map[int]string)
 
 	flag.StringVar(&media, "media", "",
 		`Pass a media name eg
@@ -45,39 +48,50 @@ func main() {
 	flag.Parse()
 
 	if media == "cap" {
-		n = news.NewsLoader{Url: "https://www.capitalfm.co.ke/news/", Query:".zox-feat-right-wrap .zox-side-list-wrap section"}
+		n = news.NewsLoader{Url: "https://www.capitalfm.co.ke/news/", Query: ".zox-feat-right-wrap .zox-side-list-wrap section"}
 		newsLink = n.GetNews()
 	} else if media == "aj" {
 		n = news.NewsLoader{Url: "https://www.aljazeera.com", Query: ".container .fte-featured__content-wrapper__right .fte-featured__right-inner-articles-wrapper .fte-featured__article-content"}
 		newsLink = n.GetNews()
 	} else if media == "rt" {
-		n = news.NewsLoader{Url: "https://www.rt.com", Query:".news-block .main-promobox ul li .main-promobox__wrapper"}
+		n = news.NewsLoader{Url: "https://www.rt.com", Query: ".news-block .main-promobox ul li .main-promobox__wrapper"}
 		newsLink = n.GetNews()
 	} else if media == "ctv" {
-		n = news.NewsLoader{Url: "https://citizentv.co.ke/", Query:".main-story .more-election-stories div"}
+		n = news.NewsLoader{Url: "https://citizentv.co.ke/", Query: ".main-story .more-election-stories div"}
 		newsLink = n.GetNews()
 	} else {
 		fmt.Println("No Media House Specified")
 		return
 	}
 
+	ticker := time.NewTicker(10 * time.Minute)
+
 	for {
-		fmt.Println("Get a specific headline (pass the number): ")
-		var reviewNo int
-		if _, err := fmt.Scanf("%d\n", &reviewNo); err != nil {
-			fmt.Printf("%s\n", err)
-			return
+
+		select {
+
+		case t := <-ticker.C:
+			fmt.Print("\033[H\033[2J")
+			fmt.Println("\u001b[33m", "Time of refresh: ", t, "\u001b[0m")
+			newsLink = n.GetNews()
+
+		default:
+			fmt.Println("Get a specific headline (pass the number): ")
+			var reviewNo int
+			if _, err := fmt.Scanf("%d\n", &reviewNo); err != nil {
+				fmt.Printf("%s\n", err)
+				return
+			}
+
+			l, ok := newsLink[reviewNo]
+
+			if !ok {
+				fmt.Println("\u001b[31m", "News link not found :(", "\u001b[0m")
+			}
+
+			fmt.Printf("Review: %d: %s\n", reviewNo, l)
+
 		}
-
-		l, ok := newsLink[reviewNo]
-
-		if !ok {
-			fmt.Println("News link not found :(")
-			return
-		}
-
-		fmt.Printf("Review: %d: %s\n", reviewNo, l)
-
 	}
 
 }
