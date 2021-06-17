@@ -42,8 +42,6 @@ func main() {
 		n        news.Newser
 	)
 
-	//c := make(chan map[int]string)
-
 	flag.StringVar(&media, "media", "",
 		`Pass a media name eg`+medialist)
 	flag.Parse()
