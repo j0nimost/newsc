@@ -47,23 +47,21 @@ func main() {
 			4. ctv : Citizen Tv(KE)`)
 	flag.Parse()
 
-	if media == "cap" {
+	switch media {
+	case "cap":
 		n = news.NewsLoader{Url: "https://www.capitalfm.co.ke/news/", Query: ".zox-feat-right-wrap .zox-side-list-wrap section"}
-		newsLink = n.GetNews()
-	} else if media == "aj" {
+	case "aj":
 		n = news.NewsLoader{Url: "https://www.aljazeera.com", Query: ".container .fte-featured__content-wrapper__right .fte-featured__right-inner-articles-wrapper .fte-featured__article-content"}
-		newsLink = n.GetNews()
-	} else if media == "rt" {
+	case "rt":
 		n = news.NewsLoader{Url: "https://www.rt.com", Query: ".news-block .main-promobox ul li .main-promobox__wrapper"}
-		newsLink = n.GetNews()
-	} else if media == "ctv" {
+	case "ctv":
 		n = news.NewsLoader{Url: "https://citizentv.co.ke/", Query: ".main-story .more-election-stories div"}
-		newsLink = n.GetNews()
-	} else {
-		fmt.Println("No Media House Specified")
+	default:
+		fmt.Println("\u001b[31m", "No Media House Specified or Not Found", "\u001b[0m")
 		return
 	}
 
+	newsLink = n.GetNews() // pull the first load of news
 	ticker := time.NewTicker(10 * time.Minute)
 
 	for {
