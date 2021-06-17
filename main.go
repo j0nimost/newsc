@@ -15,6 +15,7 @@ func main() {
 		3. rt : RT (International)
 		4. ctv : Citizen Tv(KE)
 		5. enca : eNCA (SA)
+		6. chtv : Channels Tv (NG)
 		`
 
 	fmt.Println("\u001b[32m", `
@@ -58,6 +59,8 @@ func main() {
 		n = news.NewsLoader{Url: "https://citizentv.co.ke/", Query: ".main-story .more-election-stories div"}
 	case "enca":
 		n = news.NewsLoader{Url: "https://www.enca.com", Query: ".view-latest-news .view-content .item-list ul li"}
+	case "chtv":
+		n = news.NewsLoader{Url: "https://www.channelstv.com/", Query: ".news-fold .news_content_fold .news-list-item"}
 	default:
 		fmt.Println("\u001b[31m", "No Media House Specified or Not Found", "\u001b[0m")
 		return
