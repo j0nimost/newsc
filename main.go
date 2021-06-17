@@ -9,6 +9,14 @@ import (
 
 func main() {
 
+	medialist := `
+		1. cap : Capital Radio (KE)
+		2. aj : Aljazeera (International) 
+		3. rt : RT (International)
+		4. ctv : Citizen Tv(KE)
+		5. enca : eNCA (SA)
+		`
+
 	fmt.Println("\u001b[32m", `
 		
   _        _______           _______         _______  _       _________
@@ -24,12 +32,8 @@ func main() {
 		`, "\u001b[0m")
 
 	fmt.Println(`
-		~~ Get the news briefing from the following broadcasters ~~
-		1. cap : Capital Radio (KE)
-		2. aj : Aljazeera (International) 
-		3. rt : RT (International)
-		4. ctv : Citizen Tv(KE)
-		`)
+	~~ Get the news briefing from the following broadcasters ~~
+		`, medialist)
 
 	var (
 		media    string
@@ -40,11 +44,7 @@ func main() {
 	//c := make(chan map[int]string)
 
 	flag.StringVar(&media, "media", "",
-		`Pass a media name eg
-			1. cap : Capital Radio (KE)
-			2. aj : Aljazeera (International) 
-			3. rt : RT (International)	
-			4. ctv : Citizen Tv(KE)`)
+		`Pass a media name eg`+medialist)
 	flag.Parse()
 
 	switch media {
@@ -56,6 +56,8 @@ func main() {
 		n = news.NewsLoader{Url: "https://www.rt.com", Query: ".news-block .main-promobox ul li .main-promobox__wrapper"}
 	case "ctv":
 		n = news.NewsLoader{Url: "https://citizentv.co.ke/", Query: ".main-story .more-election-stories div"}
+	case "enca":
+		n = news.NewsLoader{Url: "https://www.enca.com", Query: ".view-latest-news .view-content .item-list ul li"}
 	default:
 		fmt.Println("\u001b[31m", "No Media House Specified or Not Found", "\u001b[0m")
 		return
