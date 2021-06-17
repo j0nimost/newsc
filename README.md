@@ -14,6 +14,8 @@ A news briefing cli tool. Get the latest news headlines from your terminal:
 - Aljazeera (International)
 - RT (International)
 - Citizen Tv (Kenya)
+- eNCA (South Africa)
+
 ### Usage
 Example: `go run .\main.go -media=cap` for help use: `go run .\main.go -h`
 
