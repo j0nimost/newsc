@@ -16,6 +16,7 @@ func main() {
 		4. ctv : Citizen Tv(KE)
 		5. enca : eNCA (SA)
 		6. chtv : Channels Tv (NG)
+		7. nwr: Nairobi Wire (KE)
 		`
 
 	fmt.Println("\u001b[32m", `
@@ -59,6 +60,8 @@ func main() {
 		n = news.NewsLoader{Url: "https://www.enca.com", Query: ".view-latest-news .view-content .item-list ul li"}
 	case "chtv":
 		n = news.NewsLoader{Url: "https://www.channelstv.com/", Query: ".news-fold .news_content_fold .news-list-item"}
+	case "nwr":
+		n = news.NewsLoader{Url: "http://nairobiwire.com", Query: "#block-content .block2-small-holder .cat-block-post-title h3"}
 	default:
 		fmt.Println("\u001b[31m", "No Media House Specified or Not Found", "\u001b[0m")
 		return
