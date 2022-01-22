@@ -43,8 +43,11 @@ func (n NewsLoader) GetNews() map[int]string {
 			newsLinks[i] = href
 		}
 
-		trim := strings.TrimSpace(title)
-		fmt.Printf("Review %d: %s\n", i, trim)
+		if len(title) > 0 {
+			trim := strings.TrimSpace(title)
+			fmt.Printf("Review %d: %s\n", i, trim)
+		}
+
 	})
 
 	return newsLinks
