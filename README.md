@@ -27,6 +27,7 @@ newsc.exe -media=cap
 For Help use: `./newsc -h`
 
 ### Media Houses
+- Hacker News ⭐
 - Capital Radio (Kenya)
 - Aljazeera (International)
 - RT (International)
