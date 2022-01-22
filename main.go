@@ -10,13 +10,14 @@ import (
 func main() {
 
 	medialist := `
-		1. cap : Capital Radio (KE)
-		2. aj : Aljazeera (International) 
-		3. rt : RT (International)
-		4. ctv : Citizen Tv(KE)
-		5. enca : eNCA (SA)
-		6. chtv : Channels Tv (NG)
-		7. nwr: Nairobi Wire (KE)
+		 hn : Hacker News
+		 cap : Capital Radio (KE)
+		 aj : Aljazeera (International) 
+		 rt : RT (International)
+		 ctv : Citizen Tv(KE)
+		 enca : eNCA (SA)
+		 chtv : Channels Tv (NG)
+		 nwr: Nairobi Wire (KE)
 		`
 
 	fmt.Println("\u001b[32m", `
@@ -50,18 +51,27 @@ func main() {
 	switch media {
 	case "cap":
 		n = news.NewsLoader{Url: "https://www.capitalfm.co.ke/news/", Query: ".zox-feat-right-wrap .zox-side-list-wrap section"}
+		break
 	case "aj":
 		n = news.NewsLoader{Url: "https://www.aljazeera.com", Query: ".container .fte-featured__content-wrapper__right .fte-featured__right-inner-articles-wrapper .fte-featured__article-content"}
+		break
 	case "rt":
 		n = news.NewsLoader{Url: "https://www.rt.com", Query: ".news-block .main-promobox ul li .main-promobox__wrapper"}
+		break
 	case "ctv":
 		n = news.NewsLoader{Url: "https://citizentv.co.ke/", Query: ".main-story .more-election-stories div"}
+		break
 	case "enca":
 		n = news.NewsLoader{Url: "https://www.enca.com", Query: ".view-latest-news .view-content .item-list ul li"}
+		break
 	case "chtv":
 		n = news.NewsLoader{Url: "https://www.channelstv.com/", Query: ".news-fold .news_content_fold .news-list-item"}
+		break
 	case "nwr":
 		n = news.NewsLoader{Url: "http://nairobiwire.com", Query: "#block-content .block2-small-holder .cat-block-post-title h3"}
+		break
+	case "hn":
+		n = news.NewsLoader{Url: "https://news.ycombinator.com/", Query: "body #hnmain tbody tr table tbody .athing .title"}
 	default:
 		fmt.Println("\u001b[31m", "No Media House Specified or Not Found", "\u001b[0m")
 		return
