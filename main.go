@@ -10,13 +10,14 @@ import (
 func main() {
 
 	medialist := `
-		1. cap : Capital Radio (KE)
-		2. aj : Aljazeera (International) 
-		3. rt : RT (International)
-		4. ctv : Citizen Tv(KE)
-		5. enca : eNCA (SA)
-		6. chtv : Channels Tv (NG)
-		7. nwr: Nairobi Wire (KE)
+		 hn : Hacker News
+		 cap : Capital Radio (KE)
+		 aj : Aljazeera (International) 
+		 rt : RT (International)
+		 ctv : Citizen Tv(KE)
+		 enca : eNCA (SA)
+		 chtv : Channels Tv (NG)
+		 nwr: Nairobi Wire (KE)
 		`
 
 	fmt.Println("\u001b[32m", `
