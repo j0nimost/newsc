@@ -36,7 +36,7 @@ For Help use: `./newsc -h`
 - Channels Tv (Nigeria)
 
 ### Contributions
-Have Fun(Jibambe) and add your own media source
+Fork and Contribute by raising an Issue or creating a PR
 
 ### Author
 John Nyingi
